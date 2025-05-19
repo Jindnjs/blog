@@ -1,6 +1,5 @@
 ---
 title: "[Blog] Giscus 댓글 기능 추가하기"
-classes: wide
 excerpt: "Github 블로그에 댓글 기능을 추가해보자. 여러가지 댓글 플랫폼을 비교하고 적용해보자"
 
 categories: # 카테고리 설정
@@ -37,9 +36,9 @@ comments: true
 
 ---
 
-### [Disqus](https://disqus.com/)
+### Disqus
 
-Disqus는 다양한 웹사이트와 플랫폼에서 사용가능한 외부 댓글 서비스이다.
+[Disqus](https://disqus.com/)는 다양한 웹사이트와 플랫폼에서 사용가능한 외부 댓글 서비스이다.
 설치와 적용이 간편하며, 댓글은 다양한 소셜 로그인을 통해 댓글을 작성한다는 특징이 있다.  
 하지만 많은 사용자들이 공통적으로 말하는 단점으로는 광고가 많다는점이 있다.
 
@@ -64,7 +63,7 @@ Disqus는 다양한 웹사이트와 플랫폼에서 사용가능한 외부 댓�
 * Drafts will now auto-save while writing
   {% endcapture %}
 
-<div class="notice-danger">{{ notice-2 | markdownify }}</div>
+<div class="notice--danger">{{ notice-2 | markdownify }}</div>
 
 <h4> 특징 </h4>
 
