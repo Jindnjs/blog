@@ -47,83 +47,63 @@ comments: true
     <figcaption>Disqus 적용모습</figcaption>
 </figure>
 
-{% capture notice-1 %}
-##### New Site Features
-
-* You can now have cover images on blog pages
-* Drafts will now auto-save while writing
-{% endcapture %}
-
-<div class="notice">{{ notice-1 | markdownify }}</div>
-
-<div class="notice--info" markdown="1">
-##### asdfasdf
-
-* asdf
-* asdfasdf
-* asdfasdf
-
-</div>
-
-<div class="notice--info" markdown="1">
-##### asdfasdf
-
-* asdf
-* asdfasdf
-* asdfasdf
-
-</div>
-
-<div class="notice--info" markdown="2">
-##### asdfasdf
-
-* asdf
-* asdfasdf
-* asdfasdf
-
-</div>
-
+<div class="notice" markdown="1">
 <h4> 특징 </h4>
 
-> - 소셜 로그인을 통해 댓글 작성이 가능하다.
-> - 무료 광고가 삽입되어 가독성이 좋지않다.
-> - 댓글 및 대댓글 기능이 지원되어 댓글 피드백이 가능하다.
-> - Disqus서버에 댓글이 저장된다.
+* 소셜 로그인을 통해 댓글 작성이 가능하다.
+* 무료 광고가 삽입되어 가독성이 좋지않다.
+* 댓글 및 대댓글 기능이 지원되어 댓글 피드백이 가능하다.
+* Disqus서버에 댓글이 저장된다.
+</div>  
 
 ---
 
 ### Utterances
 
-[Utterances](https://utteranc.es/)
+
 ![Image](https://github.com/user-attachments/assets/593b6c5b-5102-450d-83c9-ef769f68e102)
 
-Utterances는 Github의 Issues를 댓글로 활용하는 댓글 서비스이다.  
+[Utterances](https://utteranc.es/)는 Github의 Issues를 댓글로 활용하는 댓글 서비스이다.  
 댓글이 특정 Github저장소에 저장되며, 포스트 하나당 이슈 하나가 연결된다. Github 기반으로 동작하기 때문에 댓글 사용을 위해 Github로그인이 필요하다.
 
+<figure>
+	<a href="/assets/images/blog-comment/2.jpg"><img src="/assets/images/blog-comment/2.jpg"></a>
+    <figcaption>Utterances 적용모습</figcaption>
+</figure>
+
+<div class="notice" markdown="1">
 <h4> 특징 </h4>
 
-> - Github 로그인을 통해 댓글 작성이 가능하다.
-> - 댓글은 GitHub Issue에 저장되며, 마크다운/이모지/알림 기능 등을 그대로 쓸 수 있다.
-> - 마크다운 언어를 지원한다.
-> - 대댓글 기능이 없다.
-> - 광고가 없다.
+* Github 로그인을 통해 댓글 작성이 가능하다.
+* 댓글은 GitHub Issue에 저장되며, 마크다운/이모지/알림 기능 등을 그대로 쓸 수 있다.
+* 마크다운 언어를 지원한다.
+* 대댓글 기능이 없다.
+* 광고가 없다.
+</div>  
 
 ---
 
 ### Giscus
 
-[Giscus](https://giscus.app)
+
 ![Image](https://github.com/user-attachments/assets/93debd7e-53cb-4715-af10-b1e3f478b404)
 
-Giscus는 Github의 Discussions 기반으로 작동하는 댓글 서비스이다.  
+[Giscus](https://giscus.app)는 Github의 Discussions 기반으로 작동하는 댓글 서비스이다.  
 댓글이 Github - Discussion에 남는 특징이 있으며, 이로인해 별도 서버없이 사용 가능하며, 광고가 없는 장점이 있다. Utterances와 마찬가지로 Github 로그인을 통해 사용가능하다.
 
+<figure>
+	<a href="/assets/images/blog-comment/3.jpg"><img src="/assets/images/blog-comment/3.jpg"></a>
+    <figcaption>Giscus 적용모습</figcaption>
+</figure>
+
+<div class="notice" markdown="1">
 <h4> 특징 </h4>
 
-> - Github 로그인을 통해 댓글 작성이 가능하다.
-> - Github Discussions 기반으로 작동한다.
-> - 댓글 및 대댓글 기능이 지원되어 댓글 피드백이 가능하다.
-> - 광고가 없다.
+* Github 로그인을 통해 댓글 작성이 가능하다.
+* Github Discussions 기반으로 작동한다.
+* 댓글 및 대댓글 기능이 지원되어 댓글 피드백이 가능하다.
+* 광고가 없다.
+</div>
 
 ---
 
@@ -155,8 +135,10 @@ Giscus는 Github의 Discussions 기반으로 작동하는 댓글 서비스이다
 
 먼저 [링크](https://github.com/apps/giscus)에서 Giscus App를 설치한다. 
 
-![Image](https://github.com/user-attachments/assets/0ca967f0-322c-4dcb-80e8-c313c7d088dd)
-![Image](https://github.com/user-attachments/assets/a353651a-ca2c-4de6-b548-56c8657aac95)
+<figure>
+	<a href="/assets/images/blog-comment/4.jpg"><img src="/assets/images/blog-comment/4.jpg"></a>
+    <a href="/assets/images/blog-comment/5.jpg"><img src="/assets/images/blog-comment/5.jpg"></a>
+</figure>
 
 댓글을 적용하고 싶은 대상 Repository를 선택하고, Install 버튼을 클릭한다.
 
@@ -177,7 +159,9 @@ Discussions에서 댓글을 위한 Category를 설정한다.
 
 아래와 같이 설정한 후, `Create`를 눌러 생성한다.
 
-![Image](https://github.com/user-attachments/assets/e090c616-2da0-4f55-b3ea-d058eac573ae)
+<figure>
+	<a href="/assets/images/blog-comment/6.jpg"><img src="/assets/images/blog-comment/6.jpg"></a>
+</figure>
 
 사용하지 않는 Category는 정리해도 무방하다.
 
@@ -188,11 +172,16 @@ Discussions에서 댓글을 위한 Category를 설정한다.
 다시 [링크](https://giscus.app/ko)에 접속하여 `Giscus` 설정을 한다.  
 우선 `저장소`에 블로그 Repository를 입력한다. 입력하기 전에 아래 조건을 만족하는지 다시 확인해보자.
 
-> 1. 공개 저장소여야 합니다. 그렇지 않으면 방문자들은 Discussion을 볼 수 없습니다.
-> 2. giscus 앱이 설치되어 있어야 합니다. 그렇지 않으면 방문자들은 댓글과 반응을 남길 수 없습니다.
-> 3. Discussions 기능이 해당 저장소에서 활성화되어 있어야 합니다.
+<div class="notice" markdown="1">
 
-![Image](https://github.com/user-attachments/assets/ca8fb479-dec1-4e85-9a23-a3c8e9798791)
+1. 공개 저장소여야 합니다. 그렇지 않으면 방문자들은 Discussion을 볼 수 없습니다.
+2. giscus 앱이 설치되어 있어야 합니다. 그렇지 않으면 방문자들은 댓글과 반응을 남길 수 없습니다.
+3. Discussions 기능이 해당 저장소에서 활성화되어 있어야 합니다.
+</div>
+
+<figure>
+	<a href="/assets/images/blog-comment/7.jpg"><img src="/assets/images/blog-comment/7.jpg"></a>
+</figure>
 
 ---
 
@@ -203,7 +192,9 @@ Discussion Category는 앞서 만든 Comments를 선택한다.
 
 선택 완료후, 아래 `giscus 사용`에 script 코드가 표시된다.
 
-![Image](https://github.com/user-attachments/assets/fbad3591-2cf8-45ba-a1ee-2d334dc1d29d)
+<figure>
+<a href="/assets/images/blog-comment/8.jpg"><img src="/assets/images/blog-comment/8.jpg"></a>
+</figure>
 
 해당 코드를 원하는 위치에 적용하면 된다.
 
@@ -251,7 +242,7 @@ comments:
 
 오늘은 블로그에 Giscus를 활용하여 댓글 기능을 추가하였다.  
 몇가지의 댓글 서비스를 분석해보니, Giscus가 가장 적합하다고 생각하였다.  
-[공식 문서](https://giscus.app/ko)도 한국어로 잘 정리되어있어 참고하는데 도움이 되었다.
+[공식 문서](https://giscus.app/)도 한국어로 잘 정리되어있어 참고하는데 도움이 되었다.
 
 ---
 
