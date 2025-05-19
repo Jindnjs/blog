@@ -37,12 +37,10 @@ comments: true
 
 ---
 
-### Disqus
-
-[Disqus - 링크](https://disqus.com/)
+### [Disqus](https://disqus.com/)
 
 <figure>
-	<img src="https://github.com/user-attachments/assets/c6a2b90e-5897-4915-881c-c270329e8b53">
+	<a href="/assets/images/blog-comment/1.jpg"><img src="/assets/images/blog-comment/1.jpg"></a>
 </figure>
 
 Disqus는 다양한 웹사이트와 플랫폼에서 사용가능한 외부 댓글 서비스이다.
