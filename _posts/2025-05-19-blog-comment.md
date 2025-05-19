@@ -32,7 +32,7 @@ comments: true
 ## 플랫폼 비교
 
 깃허브 블로그를 위한 댓글 서비스는 여러가지 존재한다.  
-이중, 많은 깃허브 블로그 작성자들이 주로 사용하는 서비스는 disqus, utterances, giscus 3가지의 서비스를 비교해보았다.
+이중, 많은 깃허브 블로그 작성자들이 주로 사용하는 서비스인 Disqus, Utterances, Giscus 3가지의 서비스를 비교해보았다.
 
 ---
 
@@ -60,9 +60,6 @@ comments: true
 
 ### Utterances
 
-
-![Image](https://github.com/user-attachments/assets/593b6c5b-5102-450d-83c9-ef769f68e102)
-
 [Utterances](https://utteranc.es/)는 Github의 Issues를 댓글로 활용하는 댓글 서비스이다.  
 댓글이 특정 Github저장소에 저장되며, 포스트 하나당 이슈 하나가 연결된다. Github 기반으로 동작하기 때문에 댓글 사용을 위해 Github로그인이 필요하다.
 
@@ -84,9 +81,6 @@ comments: true
 ---
 
 ### Giscus
-
-
-![Image](https://github.com/user-attachments/assets/93debd7e-53cb-4715-af10-b1e3f478b404)
 
 [Giscus](https://giscus.app)는 Github의 Discussions 기반으로 작동하는 댓글 서비스이다.  
 댓글이 Github - Discussion에 남는 특징이 있으며, 이로인해 별도 서버없이 사용 가능하며, 광고가 없는 장점이 있다. Utterances와 마찬가지로 Github 로그인을 통해 사용가능하다.
