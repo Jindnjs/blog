@@ -39,13 +39,32 @@ comments: true
 
 ### [Disqus](https://disqus.com/)
 
-<figure>
-	<a href="/assets/images/blog-comment/1.jpg"><img src="/assets/images/blog-comment/1.jpg"></a>
-</figure>
-
 Disqus는 다양한 웹사이트와 플랫폼에서 사용가능한 외부 댓글 서비스이다.
 설치와 적용이 간편하며, 댓글은 다양한 소셜 로그인을 통해 댓글을 작성한다는 특징이 있다.  
 하지만 많은 사용자들이 공통적으로 말하는 단점으로는 광고가 많다는점이 있다.
+
+<figure>
+	<a href="/assets/images/blog-comment/1.jpg"><img src="/assets/images/blog-comment/1.jpg"></a>
+    <figcaption>Disqus 적용모습</figcaption>
+</figure>
+
+{% capture notice-1 %}
+#### New Site Features
+
+* You can now have cover images on blog pages
+* Drafts will now auto-save while writing
+{% endcapture %}
+
+<div class="notice">{{ notice-1 | markdownify }}</div>
+
+{% capture notice-2 %}
+#### New Site Features
+
+* You can now have cover images on blog pages
+* Drafts will now auto-save while writing
+  {% endcapture %}
+
+<div class="notice-danger">{{ notice-2 | markdownify }}</div>
 
 <h4> 특징 </h4>
 
