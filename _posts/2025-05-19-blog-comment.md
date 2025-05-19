@@ -48,7 +48,7 @@ comments: true
 </figure>
 
 {% capture notice-1 %}
-#### New Site Features
+##### New Site Features
 
 * You can now have cover images on blog pages
 * Drafts will now auto-save while writing
@@ -56,14 +56,32 @@ comments: true
 
 <div class="notice">{{ notice-1 | markdownify }}</div>
 
-{% capture notice-2 %}
-#### New Site Features
+<div class="notice--info" markdown="1">
+##### asdfasdf
 
-* You can now have cover images on blog pages
-* Drafts will now auto-save while writing
-  {% endcapture %}
+* asdf
+* asdfasdf
+* asdfasdf
 
-<div class="notice--danger">{{ notice-2 | markdownify }}</div>
+</div>
+
+<div class="notice--info" markdown="1">
+##### asdfasdf
+
+* asdf
+* asdfasdf
+* asdfasdf
+
+</div>
+
+<div class="notice--info" markdown="2">
+##### asdfasdf
+
+* asdf
+* asdfasdf
+* asdfasdf
+
+</div>
 
 <h4> 특징 </h4>
 
