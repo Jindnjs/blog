@@ -77,8 +77,8 @@ AOP에서 읽은 body: null
 컨트롤러에서 받은 데이터: user123
 ```
 
-AOP에서 HttpServeletRequest의 body값을 getInputStream()으로 읽고, log로 찍어본 결과 null이 나온다.
-컨트롤러에서는 @RequestBody에 의해 정상적으로 값이 파싱되어 log에 찍힌다.
+AOP에서 HttpServeletRequest의 body값을 getInputStream()으로 읽고, log로 찍어본 결과 null이 나온다.  
+하지만 컨트롤러에서는 @RequestBody에 의해 정상적으로 값이 파싱되어 log에 찍힌다.  
 왜 컨트롤러에서는 데이터가 제대로 들어왔는데 AOP에서는 값을 읽을수 없는지 의문이 들어 찾아보았다.
 
 ---
@@ -91,7 +91,8 @@ AOP에서 HttpServeletRequest의 body값을 getInputStream()으로 읽고, log�
 이는, `ServletRequest`의 `getInputStream()`메소드의 문서에서도 확인 가능한 내용이다.
 HTTP 요청의 body는 `ServletInputStream`을 통해 제공되며, 이는 한 번만 읽을 수 있다는 특성이 있다.
 
-하지만 이것만으로는 위의 의문이 해결되지 않는다. 통상적으로는 Controller앞에 AOP를 지정하면, 컨크롤러 실행전에 AOP가 실행될것인데
+하지만 이것만으로는 위의 의문이 해결되지 않는다.  
+통상적으로는 Controller앞에 AOP를 지정하면, 컨크롤러 실행전에 AOP가 실행될것인데
 AOP에서 body를 읽을 수 없다는것은, 이미 앞에서 다른 어떠한 곳에서 inputStream을 소비하였다는것인데 AOP이후에 실행되는 컨트롤러에서는 어떻게 @RequestBody
 를 통해 값을 읽을까?  
 AOP에서 먼저 읽었다면 컨트롤러에서 읽을 수 없어야 하는데, 실제로는 반대로 컨트롤러에서는 값을 읽고있다.
@@ -101,6 +102,7 @@ AOP에서 먼저 읽었다면 컨트롤러에서 읽을 수 없어야 하는데,
 ## Spring 요청 처리 과정
 
 위의 궁금증을 해결하기 위해, HttpMessege가 Spring에서 처리되는 정확한 순서를 찾아보았다.  
+
 Spring의 요청 처리 과정을 자세히 살펴보면 다음과 같은 순서로 진행된다.
 
 <h4>Spring 요청 처리 과정</h4>
@@ -153,8 +155,9 @@ public class RequestMappingHandlerAdapter {
 
 HandlerAdapter가 찾아낸 컨트롤러가 어떤 방식으로 호출 되어야하는지를 결정하고 실행할때, 내부에서는 파라미터 바인딩이 수행된다.
 자세한 과정은 RequestMappingHandlerAdapter를 통해 확인 가능했다.   
+
 내부에서 ArgumentResolver를 통해 컨트롤러의 메소드 파라미터를 바인딩하는 과정이 이루어진다.
-실제 컨트롤러의 @PathVariable, @RequestParam, @ModelAttribute, @RequestBody을 처리하는 과정이다.
+실제 컨트롤러의 @PathVariable, @RequestParam, @ModelAttribute, @RequestBody을 처리하는 과정이다.  
 이후에, doInvoke를 통해 실제 메소드를 수행한다. **실제 AOP가 실행되는 시점은 이 시점이다.**
 
 생각해보면, AOP의 joinPoint를 통해 컨트롤러의 파라미터에 접근 가능하다는 점을 생각해본다면, 
@@ -295,9 +298,8 @@ AOP에서 읽은 body: ''
 
 앞서 AOP에서 HttpServletRequest의 body값을 읽을 수 없음과 동시에 Controller에서는 값이 읽히는 이유를 자세히 알아보았다.
 그렇다면 AOP내부에서 HttpServletRequest의 body값을 읽을 수 있도록 코드 수정을 해보자.  
-HttpServletRequest를 ContentCachingRequestWrapper를 사용하여 캐싱하면 body값을 여러번 읽을 수 있다.
 
-먼저 필터를 통해서 Filter를 통해서 서버로 들어오는 ServletRequest를 ContentCachingRequestWrapper를 사용하여 캐싱한다.
+HttpServletRequest를 ContentCachingRequestWrapper를 사용하여 캐싱하면 body값을 여러번 읽을 수 있다.
 
 <h4>RequestCachingFilter</h4>
 
@@ -319,6 +321,8 @@ public class RequestCachingFilter implements Filter {
     }
 }
 ```
+
+먼저 필터를 통해서 Filter를 통해서 서버로 들어오는 ServletRequest를 ContentCachingRequestWrapper를 사용하여 캐싱한다.
 
 그 이후 AOP에서는 RequestContextHolder를 통해 가져온 HttpServletRequest의 body값을 읽을 수 있다.
 
@@ -357,7 +361,6 @@ public Object logRequest(ProceedingJoinPoint joinPoint) throws Throwable {
 
 하지만, 이 내용만으로는 AOP가 먼저 수행됨에도 불구하고, 
 AOP내부에서 HttpServletRequest의 body값을 읽을 수 없는 이유를 이해하기 어려웠다.
-
 그래서 Spring 요청 처리 과정을 더 자세히 알아보아, 왜 이런 문제가 발생하는지를 알아보았다. 
 
 핵심 내용은 AOP는 컨트롤러 메서드 실행 시점을 감싸지만, 파라미터 바인딩은 그보다 먼저 일어난다는 것이다.
