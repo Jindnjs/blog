@@ -1,7 +1,7 @@
 ---
-title: "[Spring] RequestBody가 AOP에서 읽히지 않는 진짜 이유 - 파라미터 바인딩 시점의 비밀
+title: "[Spring] RequestBody가 AOP에서 읽히지 않는 진짜 이유 - 파라미터 바인딩 시점의 비밀"
 excerpt: "AOP를 통해 로깅을 하는 도중, request의 body가 읽히지 않는 문제를 발견했다. 
-  이에 대한 trouble shooting 과정을 정리해보자."
+이에 대한 trouble shooting 과정을 정리해보자."
 
 categories: # 카테고리 설정
   - Spring
