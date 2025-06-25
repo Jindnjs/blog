@@ -26,16 +26,16 @@ Spring Data JPA를 사용하다 보면 N+1 문제를 해결하기 위해 fetch j
 
 하지만, Fetch join과 페이징을 동시에 적용할 때는 문제가 발생할 수 있다.
 
-이번 글에서는 Fetch join과 pagination을 함께 사용할 때 발생하는 문제와 해결 방법을 정리해 보았다.  
+이번 글에서는 Fetch join과 Pagination을 함께 사용할 때 발생하는 문제와 해결 방법을 정리해 보았다.  
 
 ---
 
 ## Fetch join과 페이징 개념 정리
 
-Fetch join은 n+1을 해결하기 위해 자주 사용하는 방법이다.  
+Fetch join은 N+1을 해결하기 위해 자주 사용하는 방법이다.  
 연관 엔티티가 LAZY로 설정된 경우, 반복 접근 시 N+1 문제가 발생할 수 있다.  
 
-하지만 아래와 같은 Fetch join 코드를 사용하면 연관 데이터를 한 번에 가져와 이 문제를 해결할 수 있다.
+하지만 아래와 같은 Fetch join 코드를 사용하면 연관 데이터를 한 번에 가져와 문제를 해결할 수 있다.
 
 <h4>게시물과 댓글을 Fetch join으로 조회</h4>
 
@@ -44,12 +44,11 @@ Fetch join은 n+1을 해결하기 위해 자주 사용하는 방법이다.
 List<Post> findAllWithComments();
 ```
 
-Fetch join을 활용하여 N+1 문제 없이 한 번에 데이터를 가져올 수 있다.  
-하지만 데이터가 많아질 경우, 모든 데이터를 한 번에 불러오는 것은 서버에 부담이 될 수 있다.  
-이럴 때는 페이징 처리가 필요하다.  
+하지만 데이터가 많아질 경우 모든 데이터를 한 번에 불러오는 것은 서버에 부담이 될 수 있다.  
+이를 위해 페이징 처리가 필요하다.  
 JPA에서는 `Page`와 `Pageable`을 활용하여 손쉽게 페이징 기능을 구현할 수 있다.
 
-<h4>Fetch join + 페이징 시도</h4>
+<h4>Fetch join + 페이징</h4>
 
 ```java
 //Repository 코드
@@ -74,7 +73,7 @@ Page<Post> posts = postRepository.findAllWithComments(pageable);
 아래는 Fetch join과 페이징을 같이 수행한 쿼리의 로그 화면이다.
 
 <figure>
-	<a href="/assets/images/spring-querydsl/log.png"><img src="/assets/images/spring-querydsl/log.png"></a>
+	<a href="/assets/images/spring-querydsl/log.png"><img src="/assets/images/spring-querydsl/log.png"></a><br>
     <figcaption>로그 화면</figcaption>
 </figure>
 
@@ -200,7 +199,7 @@ public class Task {
     private String title;
     
     @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
-    @BatchSize(size = 100)
+    @BatchSize(size = 10)
     private List<Comment> comments = new ArrayList<>();
 }
 ```
@@ -213,7 +212,7 @@ application.yml에서 글로벌 설정도 가능하다.
 jpa:
   properties:
     hibernate:
-      default_batch_fetch_size: 100
+      default_batch_fetch_size: 10
 ```
 
 이렇게 하면, 페이징 쿼리는 아래처럼 두 번 나간다.
@@ -273,9 +272,7 @@ public Page<TaskDto> findWithPage(Pageable pageable) {
     long totals = total != null ? total : 0L;
 
     return new PageImpl<>(tasks, pageable, totals);
-
 }
-
 ```
 
 QueryDsl 사용 방법 역시, BatchSize와 마찬가지로 Task를 먼저 페이징하여 가져온 후, Comment 및 전체 수를 따로 조회하는 방식으로 문제를 해결한다.
@@ -313,8 +310,8 @@ JPA는 이러한 문제를 피하기 위해 메모리에서 페이징을 처리�
 
 Batch fetch나 QueryDSL을 활용한 쿼리 분리 방식을 통해, 안전하고 효율적인 데이터 조회가 가능하다.
 
-개발자로서 중요한 것은, 단순히 동작하는 코드가 아니라 **왜 그렇게 동작하는지, 어떤 문제가 발생할 수 있는지**를 깊이 이해하는 것이 중요하다는것을 이번 기회에 다시 깨닳았다.  
+개발자로서 중요한 것은, 단순히 동작하는 코드가 아니라 **왜 그렇게 동작하는지, 어떤 문제가 발생할 수 있는지**를 깊이 이해하는 것이 중요하다는것을 이번 기회에 다시 깨닳았다. 
+
 앞으로도 JPA를 사용할 때는 쿼리 로그를 꼼꼼히 확인하고, 해당 쿼리가 성능상 문제가 없는지, 최적화된 쿼리인지 확인해 보는 작업이 중요하다는것을 다시 느낀다.
-다음에는 Batch fetch의 한계나, 더 복잡한 쿼리 최적화 방법도 직접 실험해보고 싶다.
 
 ---
