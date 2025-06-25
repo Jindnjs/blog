@@ -1,6 +1,6 @@
 ---
 title: "[Spring] Fetch Join과 Pagination을 함께 쓰면 안 되는 이유"
-excerpt: ""
+excerpt: "Spring Data JPA에서 Fetch join과 페이징을 함께 사용할 때 발생하는 문제와 해결 방법을 알아보자."
 
 categories: # 카테고리 설정
   - Spring
