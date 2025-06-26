@@ -1,3 +1,15 @@
 # main links
 main:
+  - title: "Home"
+    url: https://blog.jinwon.info
+
+  # - title: "About"
+  #   url: /about/
+
+  - title: "GitHub"
+    url: https://github.com/jindnjs
+
+categories:
+  - title: "Spring"
+    url: /categories/spring
   
